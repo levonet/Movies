@@ -1,0 +1,8 @@
+[% c.loc('Dear [_1],', user.name) %]
+
+[% c.loc('Thank you for registering.') %]
+[% c.loc('To fully activate your access to all of [_1] content, simply click this link:', c.config.name) %]
+
+[% c.uri_for('/', lang, 'auth', 'validate', user.id, digest) %]
+
+[% c.loc("Note: This final registration step is a security measure that's designed to protect you. Clicking the link above confirms your e-mail address and helps ensure the authenticity of your registration.") %] ([% c.loc("If you experience problems with our link, just copy and paste the entire URL into your browser's address field and press Enter.") %])

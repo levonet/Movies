@@ -1,0 +1,10 @@
+<div class=main>
+  <div class="message_box">
+    <h2><img src="[% c.uri_for_static('images/warn.gif') %]" width="32" height="32" border=0> [% title %]</h2>
+    [% message %]
+    <hr width=80%>
+    <div align=center style="font-size: 0.8em;">
+      [% c.loc('Go directly to') %] <a class=main href="[% c.uri_for_default %]">[% c.loc('start') %]</a>.
+    </div>
+  </div>
+</div>

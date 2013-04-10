@@ -1,0 +1,61 @@
+<!-- Auth -->
+      <BR>
+      <TABLE border="0" cellpadding="0" cellspacing="0" width="172">
+	<TBODY>
+	<TR valign="top"><TD width="172"><IMG border="0" width="172" height="14" src="[% c.uri_for_static('images/w1_t.gif') %]"></TD></TR>
+	<TR><TD background="[% c.uri_for_static('images/w1_cg.gif') %]">
+	<div class=s_win>
+[% PROCESS menu_auth.tt %]
+	</div>
+	</TD></TR>
+	<TR><TD><IMG border="0" width="172" height="14" src="[% c.uri_for_static('images/w1_b.gif') %]"></TD></TR>
+	</TBODY>
+      </TABLE>
+<!-- Localization -->
+      <BR>
+      <TABLE border="0" cellpadding="0" cellspacing="0" width="172">
+	<TBODY>
+	<TR valign="top"><TD width="172"><IMG border="0" width="172" height="14" src="[% c.uri_for_static('images/w1_t.gif') %]"></TD></TR>
+	<TR><TD background="[% c.uri_for_static('images/w1_cg.gif') %]">
+	<div class=s_win><ul class=navbar>
+[% FOREACH localz IN c.config.localization -%]
+	    <li><a class=[%IF c.is_lang(localz.key) %]active[% ELSE %]main[% END %] href="[% c.uri_lang(localz.key) %]">[% c.enc(localz.value) %]</a> ([% localz.key %])</li>
+[% END -%]
+	</ul></div>
+	</TD></TR>
+	<TR><TD><IMG border="0" width="172" height="14" src="[% c.uri_for_static('images/w1_b.gif') %]"></TD></TR>
+	</TBODY>
+      </TABLE>
+<!-- Statistic -->
+<!-- TODO
+      <BR>
+      <TABLE border="0" cellpadding="0" cellspacing="0" width="172">
+	<TBODY>
+	<TR valign="top"><TD width="172"><IMG border="0" width="172" height="14" src="[% c.uri_for_static('images/w1_t.gif') %]"></TD></TR>
+	<TR><TD background="[% c.uri_for_static('images/w1_cg.gif') %]">
+	<div class=s_win>
+	* Фильмов в хранилище:
+	* Общий обем:
+	* Кранее добавление:
+	* Добавлено за месяц:
+	* Зарегестрировано пользователей:
+	* Находятся на сайте:
+	* Оставлено комментариев:
+	</div>
+	</TD></TR>
+	<TR><TD><IMG border="0" width="172" height="14" src="[% c.uri_for_static('images/w1_b.gif') %]"></TD></TR>
+	</TBODY>
+      </TABLE>
+-->
+      <BR>
+<!-- GisMeteo -->
+<!--      <BR>
+      <TABLE border="0" cellpadding="0" cellspacing="0" width="172">
+	<TBODY>
+	<TR valign="top"><TD width="172"><IMG border="0" width="172" height="14" src="[% c.uri_for_static('images/w1_t.gif') %]"></TD></TR>
+	<TR><TD background="[% c.uri_for_static('images/w1_cg.gif') %]"><CENTER><A href="http://www2.gismeteo.ru/weather/towns/33990.htm"><IMG alt="ФОБОС: погода в г.Ялта" src="http://informer.gismeteo.ru/33990-9.GIF" border=0 width=120 height=60></A></CENTER></TD></TR>
+	<TR><TD><IMG border="0" width="172" height="14" src="[% c.uri_for_static('images/w1_b.gif') %]"></TD></TR>
+	</TBODY>
+      </TABLE>
+      <BR>
+-->

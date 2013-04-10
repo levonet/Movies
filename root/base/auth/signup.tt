@@ -1,0 +1,34 @@
+[% SET meta = meta _ '<link rel="stylesheet" href="' _ c.uri_for_static('css/widgets.css') _ '" type="text/css">' -%]
+<div class=main>
+
+[% PROCESS widgets.tt %]
+
+[% IF c.req.params.status -%]
+  <div class="message_box">
+    [% c.loc('Status: [_1]', c.req.params.status) %]
+  </div>
+[% END -%]
+
+<form action="[% c.uri_for('/', lang, 'auth', 'registration') %]" method="POST" name="signup">
+  <div class="portlet">
+[% label_edit('login', c.loc('Login name'), 20, 'Login name', c.req.params.login, '> <i>*</i') %]
+[% label_password('password', c.loc('Password'), 20, 'Password', '', '> <i>*</i') %]
+[% label_password('passwordconfirm', c.loc('Re-type Password'), 20, 'Re-type Password', '') %]
+    <hr>
+[% label_edit('name', c.loc('Name'), 25, 'Name', c.req.params.name, '> <i>* ' _ c.loc('This name will be shown on comments') _ '</i') %]
+[% label_edit('email_address', c.loc('E-Mail'), 25, 'E-Mail', c.req.params.email_address, '> <i>*</i') %]
+    <hr>
+    <table border="0"><tr>
+    <td><img id="CaptchaImg" border="0" src="[% c.uri_for('captcha') %]" title="[% c.loc('Try a new code') %]" alt="Captcha"
+	onclick="javascript:document.getElementById('CaptchaImg').src = '[% c.uri_for('captcha', { rand => 'x' }) %]' + Math.random();">
+    </td><td>
+[% label_edit('validate', c.loc('Type the code shown'), 25, 'Type the code shown' ) %]
+    </td>
+    </tr></table>
+    <input class="submitBtnOk" type="submit" name="submit" value="[% c.loc('Create my account') %]" alt="Create my account">
+  </div>
+</form>
+<br>
+<i>[% c.loc('* - indicates a required field') %]</i><br>
+
+</div>

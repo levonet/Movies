@@ -1,0 +1,31 @@
+[% IF c.user_exists %]
+    <div>
+    [% c.user.name %]
+    <ul class=navbar>
+	<li><a class=[%IF current == 'profile' %]active[% ELSE %]main[% END %] href="[% c.uri_for('/', lang, 'profile') %]">[% c.loc('Profile') %]</a></li>
+	<li><a class=main href="[% c.uri_for('/logout') %]">[% c.loc('Logout') %]</a></li>
+    </ul>
+    </div>
+[% ELSE %]
+    <form action="[% c.uri_for('/', 'login') %]" method="POST" name="login">
+	<input name=aaa_redir type=hidden value="[% c.uri_lang(lang) %]">
+	<input name=aaa_lang type=hidden value="[% lang %]">
+    <div class="portlet">
+	<div class="field">
+	    <label for="aaa_name">[% c.loc('Name') %]</label>
+	    <br>
+	    <input class="inputFld" type="text" size=15 alt="Username" accesskey="accesskeys-login" name="aaa_name" value="" id="aaa_name" tabindex="10000">
+	</div>
+	<div class="field">
+	    <label for="aaa_passwd">[% c.loc('Password') %]</label>
+	    <br>
+	    <input class="inputFld" type="password" size=15 alt="Password" name="aaa_passwd" value="" id="aaa_passwd" tabindex="10001">
+	</div>
+	<div class="formControls"><input class="submitBtnLogin" type="submit" name="submit" value="[% c.loc('Login') %]" alt="Login" accesskey="accesskeys-login" tabindex="10002"></div>
+    </div>
+    <ul class=navbar>
+	<li><a class=[%IF current == 'signup' %]active[% ELSE %]main[% END %] href="[% c.uri_for('/', lang, 'auth', 'signup') %]" tabindex="10003">[% c.loc('Sign Up') %]</a></li>
+    </ul>
+[%  IF c.req.params.auth_err %]<div class="navbar-error">[% c.loc('Bad username or password.') %]</div>[% END -%]
+    </form>
+[% END %]

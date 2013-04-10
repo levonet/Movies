@@ -1,0 +1,74 @@
+
+System Requirements
+
+  - root privilegies. Otherwise, you can still install using local::lib.
+  - Perl 5.8.6 or higher.
+  - Catalyst 5.8 or higher.
+  - database: in theory, any database back-end supported by DBIx::Class.
+    But Movies has been successfully tested with MySQL.
+  - MTA: sendmail, postfix or another.
+  - webserver: any supported with Catalyst.
+  - mplayer for generating information about video files.
+
+Install Catalyst
+
+  This can be as easy as
+    # cpan Catalyst::Runtime Catalyst::Devel
+  and answer yes to all prompts (there will be a lot of them).
+  To force an automatic "yes" to prompts, run
+    # PERL_MM_USE_DEFAULT=1 cpan Catalyst::Runtime Catalyst::Devel
+  For details:
+    http://wiki.catalystframework.org/wiki/installingcatalyst
+
+Install Movies
+
+  Download and extract tarball to your httproot directory from
+  http://ftp.yalta.net.ua/pub/Movies/
+
+  To install all the required modules using CPAN, go to Movies root
+  directory and run:
+    # perl Makefile.PL
+    # make installdeps
+
+Configure and prepare Movies to run
+
+  movies.conf is the main configuration file and is in Config::General format.
+
+  First make sure your config file has a valid DSN for your database. The
+  setting you change is in the connect_info hash in the Model::DB block.
+
+  For instance, for MySQL:
+      dsn       dbi:mysql:database=movies;host=localhost
+      user      db_user
+      password  db_password
+
+  For MySQL you want to create the database first:
+    > create database movies;
+
+  Once the DSN is setup, we "deploy" the schema and some initial data to
+  the Movies database my running the following script:
+    # ./script/movies_spawn_db.pl
+
+  This script has sane defaults for a test initial, but you can override
+  this. Run it with --help to see usage information.
+
+Launch test
+
+  Movies is a Catalyst application and works with Catalyst's built-in web
+  server, or with an external one.
+
+  Catalyst includes a test server with can be started using:
+    # ./script/movies_server.pl
+
+  And you can connent to your server at
+    http://localhost:3000
+
+Deployment with other external servers
+
+  Please see the Catalyst deployment page on the Catalyst wiki
+    http://wiki.catalystframework.org/wiki/deployment/
+
+Login
+
+  Login to your Movies and change the admin password. The default
+  login/pass is admin/admin

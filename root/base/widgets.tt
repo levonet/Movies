@@ -1,0 +1,89 @@
+[%
+ # label_edit
+-%]
+[% MACRO label_edit(id, label, size, alt, value, ext) BLOCK; -%]
+    <div class="field">
+	<label for="[% id %]">[% label %]</label><br>
+	<input class="inputFld" type="text" id="[% id %]" size=[% size %] name="[% id %]" alt="[% alt %]" value="[% value %]"[% ' ' _ ext IF ext; %]>
+    </div>
+[%- END; -%]
+[%
+ # label_edit_sel
+-%]
+[% MACRO label_edit_sel(frm_name, id, label, size, alt, value, ext) BLOCK; -%]
+    <div class="field">
+	<label for="[% id %]">[% label %]</label><br>
+	<input class="inputFld" type="text" id="[% id %]" size=[% size %] name="[% id %]" alt="[% alt %]" value="[% value %]"[% ' ' _ ext IF ext; %]>
+	<input class="popupBtn" type="button" value=".." onclick="javascript:window.open(
+		'[% c.uri_for('/', lang, 'query_list', {qfrm=>frm_name, qlst=>id}) %]',
+		'query_list','width=270,height=350,resizable=yes,scrollbars=yes');">
+    </div>
+[%- END; -%]
+[%
+ # label_password
+-%]
+[% MACRO label_password(id, label, size, alt, value, ext) BLOCK; -%]
+    <div class="field">
+	<label for="[% id %]">[% label %]</label><br>
+	<input class="inputFld" type="password" id="[% id %]" size=[% size %] name="[% id %]" alt="[% alt %]" value="[% value %]"[% ' ' _ ext IF ext; %]>
+    </div>
+[%- END; -%]
+[%
+ # label_select
+-%]
+[% MACRO label_select(id, label, list, def_value, ext, grp_label) BLOCK; -%]
+    <div class="field">
+	<label for="[% id %]">[% label %]</label><br>
+	<select class="itemLst" name="[% id %]"[% ' ' _ ext IF ext; %]>
+	    [% IF grp_label %]<optgroup label="[% grp_label %]">[% END %]
+[%      FOREACH q IN list -%]
+	    <option[% IF q.id != '' %] value="[% q.id %]"[% ELSE %] disabled[% END; IF q.id == def_value %] selected[% END %]>[% q.name %]</option>
+[%      END -%]
+	    [% IF grp_label %]</optgroup>[% END %]
+	</select>
+    </div>
+[%- END; -%]
+[%
+ # label_select_alt
+-%]
+[% MACRO label_select_alt(id, label, list, def_value, ext) BLOCK; -%]
+    <div class="field">
+	<label for="[% id %]">[% label %]</label><br>
+	<select class="itemLst" name="[% id %]"[% ' ' _ ext IF ext; %]>
+[%      FOREACH q IN list -%]
+	    <option value="[% q.id %]"[% IF q.id == def_value %] selected[% END %]>[% q.id %] [% q.name %]</option>
+[%      END -%]
+	</select>
+    </div>
+[%- END; -%]
+[%
+ # label_file
+-%]
+[% MACRO label_file(id, label, size, alt, value, ext) BLOCK; -%]
+    <div class="field">
+	<label for="[% id %]">[% label %]</label><br>
+	<input class="inputFld" type="file" id="[% id %]" size=[% size %] name="[% id %]" alt="[% alt %]" value="[% value %]"[% ' ' _ ext IF ext; %]>
+    </div>
+[%- END; -%]
+[%
+ # label_textarea
+-%]
+[% MACRO label_textarea(id, label, cols, rows, value) BLOCK; -%]
+    <div class="field">
+	<label for="[% id %]">[% label %]</label><br>
+	<textarea class="inputFld" id="[% id %]" rows=[% rows %] cols=[% cols %] name="[% id %]">[% value %]</textarea>
+    </div>
+[%- END; -%]
+[%
+ # menu_boxhead
+-%]
+[% MACRO menu_boxhead(menu, range, routine, lang, no) BLOCK; -%]
+<table class=boxhead border=1 cellpadding=2 cellspacing=0><tr>
+[% FOREACH key IN range -%]
+<td [% 'class=boxheadActive ' IF menu.$key.current %]align=left><b>[%
+    IF menu.$key.hide || menu.$key.current; menu.$key.name;
+    ELSE %]<a href="[% c.uri_for('/', lang, 'movies', no, routine, key) %]">[% menu.$key.name %]</a>[%
+    END %]</b></td>
+[% END -%]
+</tr></table>
+[%- END; -%]

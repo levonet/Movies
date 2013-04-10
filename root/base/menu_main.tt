@@ -1,0 +1,26 @@
+<div class=s_win>
+<ul class=navbar>
+    <li><a class=[% current == 'new' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'movies', 'new') %]">[%c.loc('New')%]</a></li>
+    <li><a class=[% current == 'ctg' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'movies', 'ctg') %]">[%c.loc('By genre')%]</a></li>
+    <li><a class=[% current == 'alphabet' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'movies', 'alphabet') %]">[%c.loc('By alphabet')%]</a></li>
+    <li><a class=[% current == 'release' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'movies', 'release') %]">[%c.loc('By release')%]</a></li>
+    <li><a class=[% current == 'search' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'movies', 'search') %]">[%c.loc('Search')%]</a></li>
+[% IF c.check_user_roles('Admins') -%]
+    <br>
+    <li><a class=[% current == 'list' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'movies', 'list') %]">[%c.loc('Full list')%]</a></li>
+    <li><a class=[% current == 'create' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'movies', 'create') %]">[%c.loc('Add movie')%]</a></li>
+[%   IF current == 'view' || current == 'edit' || current == 'delete' -%]
+    <li><a class=[% current == 'edit' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'movies', no, 'edit', 'general') %]">[%c.loc('Edit')%]</a></li>
+    <li><a class=[% current == 'delete' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'movies', no, 'delete') %]">[%c.loc('Delete')%]</a></li>
+[%   END -%]
+    <br>
+    <li><a class=[% current == 'admin' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'admin') %]">[%c.loc('Administration')%]</a></li>
+[%   IF c.contain(current, "admin") -%]
+    <ul class=navbar>
+        <li><a class=[% current == 'admin_users' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'admin', 'users') %]">[%c.loc('Users')%]</a></li>
+        <li><a class=[% current == 'admin_user_create' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'admin', 'user_create') %]">[%c.loc('Create new user')%]</a></li>
+    </ul>
+[%   END -%]
+[% END -%]
+</ul>
+</div>

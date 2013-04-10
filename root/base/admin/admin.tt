@@ -1,0 +1,54 @@
+[% SET meta = meta _ '<link rel="stylesheet" href="' _ c.uri_for_static('css/widgets.css') _ '" type="text/css">' -%]
+<div class=main>
+
+[% IF c.req.params.status -%]
+  <div class="message_box">
+    [% c.loc('Status: [_1]', c.req.params.status) %]
+  </div>
+[% END -%]
+
+<table class=box border=0 cellpadding=5 cellspacing=0 width=100%>
+<tr><td>
+  <h4>[% c.loc('Rebuild search index') %]</h4>
+  [% c.loc('This process will take some time.') %]<br>
+  <br>
+  <form action="[% c.uri_for('/', lang, 'admin', 'redirect', 'reindex') %]" method="post" name="reindex">
+    <div class="portlet">
+	<div class="formControls">
+	    <input class="submitBtnOk" type="submit" name="submit" value="[% c.loc('Start') %]" alt="Start">
+	</div>
+    </div>
+  </form>
+</td></tr>
+</table>
+<br>
+<table class=box border=0 cellpadding=5 cellspacing=0 width=100%>
+<tr><td>
+  <h4>[%c.loc('Update data from files in storages') %]</h4>
+  [%c.loc('For use this function, storages must be accessible from webserver.') %]<br>
+  <br>
+  <form action="[% c.uri_for('/', lang, 'admin', 'redirect', 'upd_db') %]" method="post" name="upd_db">
+    <input type="checkbox" name="db_path" value="file_size" id="file_size"[% IF c.contain(c.req.params.db_path, 'file_size') %] checked[% END %]><label for="file_size">[% c.loc('Size of files from storage') %]</label><br>
+    <input type="checkbox" name="db_path" value="file_len" id="file_len"[% IF c.contain(c.req.params.db_path, 'file_len') %] checked[% END %]><label for="file_len">[% c.loc('Runtime of files from storage') %]</label><br>
+    <input type="checkbox" name="db_path" value="audio" id="audio"[% IF c.contain(c.req.params.db_path, 'audio') %] checked[% END %]><label for="audio">[% c.loc('Audio fields from storage') %]</label><br>
+    <input type="checkbox" name="db_path" value="video" id="video"[% IF c.contain(c.req.params.db_path, 'video') %] checked[% END %]><label for="video">[% c.loc('Video fields from storage') %]</label><br>
+    <input type="checkbox" name="db_general" value="runtime" id="runtime"[% IF c.contain(c.req.params.db_general, 'runtime') %] checked[% END %]><label for="runtime">[% c.loc('Runtime in General from data about files') %]</label><br>
+    <input type="checkbox" name="show_fnf" value="1" id="show_fnf"[% IF c.req.params.show_fnf %] checked[% END %]><label for="show_fnf">[% c.loc('Show not found files') %]</label><br>
+    <div class="portlet">
+	<div class="formControls">
+	    <input class="submitBtnOk" type="submit" name="submit" value="[% c.loc('Start') %]" alt="Start">
+	</div>
+    </div>
+  </form>
+[% IF c.req.params.show_fnf && files_not_found -%]
+  <div class="message_box">
+    [% c.loc('Files not found:') %]
+[%   FOREACH file_name IN files_not_found -%]
+    <br>[% file_name %]
+[%   END -%]
+  </div>
+[% END -%]
+</td></tr>
+</table>
+
+</div>

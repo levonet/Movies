@@ -1,0 +1,20 @@
+<html>
+<head>
+  <title>[% title %]</title>
+  <link rel="stylesheet" href="[% c.uri_for_static('css/wrapper.css') %]" type="text/css">
+</head>
+<body>
+
+<table bgcolor=#0052ce border=0 cellpadding=0 cellspacing=0 class=qlist width=98%>
+<tr><td align=right>[<a class=x2 href="javascript://" onclick="window.close();" style="font-weight: bold;">[% c.loc('Close') %]</a>]</td></tr>
+<tr><td style="color: #ffffff; font-weight: bold;">
+&nbsp;[% c.loc('Select from list:') %]</td></tr>
+[%   bgflag = 0 -%]
+[%   bgcolor = [ ' bgcolor=#ffffff', ' bgcolor=#e0e0ef' ] -%]
+[% FOREACH list IN rs_list.all -%]
+    <tr><td align=left[% bgcolor.$bgflag %]><a class=x1 href="javascript://"
+	onclick="opener.document.[% c.req.params.qfrm %].[% c.req.params.qlst %].value='[% c.enc(list.get_column('val')) %]'; window.close();">[% c.enc(list.get_column('name')) %]</a></td></tr>
+[%   SET bgflag = (bgflag) ? 0 : 1 -%]
+[% END -%]
+</table>
+</body></html>

@@ -1,0 +1,442 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"POT-Creation-Date: 2009-11-01 13:52+2\n"
+"PO-Revision-Date: 2009-11-01 13:52+2\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lib/Movies/Controller/Movies.pm:131
+msgid " :: "
+msgstr ""
+
+#. ("FILM NAME")
+#. ($c->enc($rs->get_column('loc_title')
+#: lib/Movies/Controller/Movies.pm:276 lib/Movies/Controller/Movies.pm:313
+msgid " :: %1"
+msgstr ""
+
+#. ($c->enc($actor_name)
+#: lib/Movies/Controller/Movies.pm:258
+msgid " :: %1 :: Filmography"
+msgstr ""
+
+#: lib/Movies/Controller/Movies.pm:120 lib/Movies/Controller/Movies.pm:130
+msgid " :: By genre"
+msgstr " :: За жанром"
+
+#: lib/Movies/Controller/Movies.pm:197 lib/Movies/Controller/Movies.pm:206
+msgid " :: By name"
+msgstr " :: За ім'ям"
+
+#: lib/Movies/Controller/Movies.pm:83
+msgid " :: New & Upcoming movies"
+msgstr " :: Нові за поступом"
+
+#: lib/Movies/Controller/Movies.pm:251
+msgid " :: Release movie list"
+msgstr ""
+
+#. (desc.len)
+#: root/base/view.tt:50
+msgid "%1 min."
+msgstr "%1 мин."
+
+#. (path.file_size)
+#: root/base/view.tt:71
+msgid "(%1 Mb)"
+msgstr ""
+
+#: root/base/view.tt:70
+msgid ".."
+msgstr ""
+
+#: lib/Movies/Controller/Movies.pm:92
+msgid "100 last"
+msgstr "100 останніх"
+
+#: lib/Movies/Controller/Movies.pm:89
+msgid "15 last"
+msgstr "15 останніх"
+
+#: lib/Movies/Controller/Movies.pm:90
+msgid "25 last"
+msgstr "25 останніх"
+
+#: lib/Movies/Controller/Movies.pm:91
+msgid "50 last"
+msgstr "50 останніх"
+
+#: root/base/view.tt:77
+msgid "<b>The note:</b><br> In the top corner of a card of a film"
+msgstr "<b>Примітка:</b><br> У вищому кутку карти фільму"
+
+#: lib/Movies.pm:181
+msgid "Accident"
+msgstr ""
+
+#: root/base/view.tt:54
+msgid "Actors:"
+msgstr "Актори:"
+
+#: root/base/menu_main.tt:8
+msgid "Add movie"
+msgstr "Додати кінофільм"
+
+#: root/base/menu_main.tt:14
+msgid "Administration"
+msgstr ""
+
+#: lib/Movies/Schema.pm:60
+msgid "Administrator"
+msgstr "Адміністратор"
+
+#: lib/Movies.pm:175
+msgid "Adventures"
+msgstr "Пригоди"
+
+#: lib/Movies.pm:159
+msgid "Animation"
+msgstr ""
+
+#: lib/Movies/Schema.pm:59
+msgid "Anonymous"
+msgstr ""
+
+#: lib/Movies.pm:191 lib/Movies/Controller/Movies.pm:183 lib/Movies/Controller/Movies.pm:184 lib/Movies/Controller/Movies.pm:217 lib/Movies/Controller/Movies.pm:218
+msgid "Another"
+msgstr "Інше"
+
+#: root/base/auth.tt:25
+msgid "Bad username or password."
+msgstr "Неірне ім'я користувача або пароль."
+
+#: root/base/menu_main.tt:5 root/base/top_bar.tt:5
+msgid "By alphabet"
+msgstr "За алфавітом"
+
+#: root/base/menu_main.tt:4 root/base/top_bar.tt:4
+msgid "By genre"
+msgstr "За жанром"
+
+#: root/base/view.tt:51
+msgid "Category:"
+msgstr "Категорія:"
+
+#: lib/Movies.pm:166
+msgid "Comedy"
+msgstr "Комедія"
+
+#: lib/Movies.pm:186
+msgid "DB ERROR"
+msgstr ""
+
+#: root/base/menu_main.tt:11
+msgid "Delete"
+msgstr "Видалети"
+
+#: root/base/view.tt:53
+msgid "Description:"
+msgstr "Опис:"
+
+#: lib/Movies.pm:179
+msgid "Detective"
+msgstr "Детектив"
+
+#: root/base/view.tt:49
+msgid "Director:"
+msgstr ""
+
+#. (range)
+#: root/base/view.tt:68
+msgid "Download %1"
+msgstr "Завантажети %1"
+
+#: lib/Movies.pm:165
+msgid "Drama"
+msgstr "Драма"
+
+#: root/base/view.tt:50
+msgid "Duration:"
+msgstr "Тривалість:"
+
+#: root/base/menu_main.tt:10
+msgid "Edit"
+msgstr "Редагувати"
+
+#: lib/Movies.pm:169
+msgid "Fantastic"
+msgstr "Фантастичний"
+
+#: lib/Movies.pm:168
+msgid "Fantasy"
+msgstr "Фантазія"
+
+#: lib/Movies.pm:177
+msgid "Fighting"
+msgstr ""
+
+#:
+msgid "Found:"
+msgstr "Знайдено:"
+
+#. (pager.total_entries)
+#: root/base/movies.tt:55
+msgid "Found: %1"
+msgstr ""
+
+#: root/base/menu_main.tt:7
+msgid "Full list"
+msgstr "Повний список"
+
+#: root/base/view.tt:40
+msgid "Genre:"
+msgstr "Жанр:"
+
+#: root/base/message.tt:8
+msgid "Go directly to "
+msgstr ""
+
+#: root/base/movies.tt:59
+msgid "Goto first page"
+msgstr ""
+
+#: root/base/movies.tt:75
+msgid "Goto last page"
+msgstr ""
+
+#: lib/Movies.pm:209
+msgid "Horror and violence scenes are minimum"
+msgstr "Жахи та дії насильства містить мінімально"
+
+#: lib/Movies.pm:172
+msgid "Horrors"
+msgstr "Жахи"
+
+#: root/base/view.tt:39
+msgid "Language:"
+msgstr "Мова:"
+
+#: root/base/auth.tt:22
+msgid "Login"
+msgstr "Логін"
+
+#: root/base/auth.tt:5
+msgid "Logout"
+msgstr ""
+
+#: lib/Movies.pm:211
+msgid "Materials \"the adult \" character"
+msgstr ""
+
+#: lib/Movies.pm:164
+msgid "Melodrama"
+msgstr "Мелодрама"
+
+#: lib/Movies/Controller/Movies.pm:28
+msgid "Movies"
+msgstr "Фільми"
+
+#: lib/Movies.pm:189
+msgid "Music"
+msgstr "Музика"
+
+#: lib/Movies.pm:190
+msgid "Musical"
+msgstr "Музичний"
+
+#: lib/Movies.pm:170
+msgid "Mysticism"
+msgstr "Містика"
+
+#: root/base/auth.tt:13
+msgid "Name"
+msgstr "Ім'я"
+
+#: root/base/menu_main.tt:3 root/base/top_bar.tt:3
+msgid "New"
+msgstr "Новий"
+
+#: root/base/movies.tt:72
+msgid "Next page"
+msgstr ""
+
+#: lib/Movies/Controller/Movies.pm:87
+msgid "One month"
+msgstr "Протягом місяця"
+
+#. (range)
+#: root/base/view.tt:69
+msgid "Open %1"
+msgstr "Відкрити %1"
+
+#: root/base/movies.tt:57
+msgid "Open menu"
+msgstr ""
+
+#. (pager.last_page)
+#: root/base/movies.tt:57
+msgid "Pages %1 "
+msgstr ""
+
+#: root/base/auth.tt:18
+msgid "Password"
+msgstr "Пароль"
+
+#: root/base/movies.tt:62
+msgid "Previous page"
+msgstr ""
+
+#: root/base/view.tt:48
+msgid "Production:"
+msgstr "Виробництво:"
+
+#: root/base/auth.tt:4
+msgid "Profile"
+msgstr "Профіль"
+
+#: lib/Movies.pm:212
+msgid "Scenes of sex, violence, not standard lexicon"
+msgstr ""
+
+#: root/base/movies.tt:18
+msgid "Select genre:"
+msgstr "Виберіть жанр:"
+
+#: lib/Movies.pm:163
+msgid "Sensuality"
+msgstr ""
+
+#: root/base/movies.tt:15
+msgid "Show"
+msgstr "Показти"
+
+#: root/base/auth.tt:24
+msgid "Sign Up"
+msgstr ""
+
+#: lib/Movies.pm:188
+msgid "Sports"
+msgstr "Спорт"
+
+#: lib/Movies.pm:160
+msgid "The children's"
+msgstr ""
+
+#: lib/Movies.pm:176
+msgid "The criminal"
+msgstr ""
+
+#: lib/Movies.pm:182
+msgid "The documentary"
+msgstr "Документальний фільм"
+
+#: lib/Movies.pm:161 lib/Movies.pm:208
+msgid "The family"
+msgstr ""
+
+#: lib/Movies.pm:183
+msgid "The historical"
+msgstr "історичний"
+
+#: lib/Movies.pm:174
+msgid "The insurgent"
+msgstr ""
+
+#: lib/Movies.pm:162
+msgid "The love novel"
+msgstr "Любовний роман"
+
+#: lib/Movies.pm:187
+msgid "The nature"
+msgstr "Природа"
+
+#: lib/Movies.pm:171
+msgid "The psychological"
+msgstr "Психологічний"
+
+#. ('<span class="error_detail">' . $c->req->uri->clone . '</span>')
+#: lib/Movies/Controller/Root.pm:67
+msgid "The requested URL was not found: %1"
+msgstr "Запитаний URL не був знайдений: %1"
+
+#: lib/Movies.pm:184
+msgid "The scientific"
+msgstr "Науковий"
+
+#: lib/Movies.pm:185
+msgid "The training"
+msgstr ""
+
+#: lib/Movies.pm:210
+msgid "There are scenes of violence and drugs"
+msgstr "Містить дії насильства та наркотиків"
+
+#: lib/Movies/Controller/Movies.pm:86
+msgid "This Week"
+msgstr "На цьому тижні"
+
+#: root/base/view.tt:79
+msgid "This mark is remembered and is visible in all lists."
+msgstr "Ця мітка запам'ятається та буде видима у всіх списках."
+
+#: lib/Movies.pm:173
+msgid "Thriller"
+msgstr "Тріллер"
+
+#: root/base/top_bar.tt:7
+msgid "Total movies"
+msgstr ""
+
+#: lib/Movies.pm:167
+msgid "Tragicomedy"
+msgstr "Трагікомедія"
+
+#: lib/Movies/Controller/Movies.pm:88
+msgid "Two month"
+msgstr "За два місяці"
+
+#: root/base/movies.tt:10
+msgid "Upcoming movies"
+msgstr ""
+
+#: lib/Movies.pm:180
+msgid "War"
+msgstr "Війна"
+
+#: lib/Movies.pm:178
+msgid "Western"
+msgstr "Вестерн"
+
+#: root/base/message.tt:11
+msgid "do not pass jail, do not collect $200..."
+msgstr ""
+
+#: root/base/message.tt:10
+msgid "login"
+msgstr "логін"
+
+#: root/base/message.tt:9
+msgid "or"
+msgstr "або"
+
+#: root/base/message.tt:3
+msgid "shrinked head"
+msgstr ""
+
+#: root/base/message.tt:8
+msgid "start"
+msgstr ""
+
+#: root/base/view.tt:78
+msgid "you can establish a mark about viewing"
+msgstr "Ви можете встановити мітку про розгляд фільму"

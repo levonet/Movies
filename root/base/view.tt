@@ -1,0 +1,128 @@
+<div class=main>
+
+<script language="JavaScript1.2">
+<!--
+isM = (navigator.appCodeName == "Mozilla") ? 1 : 0;
+isNC = (!isM && navigator.appName == "Netscape") ? 1 : 0;
+isIE = (!isM && !isNC) ? 1 : 0;
+
+function clickHandler(e) {
+  var prepareId, targetId, srcElement, targetElement;
+  srcElement = (isIE) ? window.event.srcElement : e.target;
+  if (srcElement.className == "Outline") {
+    prepareId = srcElement.id.replace('img', '');
+    targetId = prepareId + "details";
+    targetElement = (isIE) ? document.all(targetId) : (isM) ? document.getElementById(targetId) : eval('document.' + targetId);
+    if (targetElement.style.display == "none") {
+      targetElement.style.display = "";
+      document.getElementById(prepareId + "img").src = "[% c.uri_for_static('images/check_minus.gif') %]";
+    } else {
+      targetElement.style.display = "none";
+      document.getElementById(prepareId + "img").src = "[% c.uri_for_static('images/check_plus.gif') %]";
+    }
+  }
+  return true;
+}
+
+document.onclick = clickHandler;
+-->
+</script>
+
+[% PROCESS top_bar.tt -%]
+
+<br>
+<table border=0 cellpadding=0 cellspacing=0 width='100%' class=view><tbody>
+<tr><td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+    <td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+    <td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td></tr>
+<tr valign="top">
+    <td rowspan=1 colspan=2 class=view><span class=view_title>&nbsp;[%
+	IF user_granted;
+	    view_switch = view_state ? 'off' : 'on';
+	    %]<a href=[% c.uri_for('/',lang,'movies',desc.id,desc_lang,{set_view=>view_switch}) | html
+	    %]><img border=0 src="[% c.uri_for_static('images/checkbox_' _ (view_state ? 'on' : 'off') _ '.gif') %]"></a>[%
+	END;
+	' ' _ c.enc(desc.get_column('loc_title'));
+	IF desc.orig_lang != desc_lang; ' / ' _ desc.orig_title; END;
+	' | ' _ desc.ryear _ ' ' _ c.enc(desc.get_column('country'));
+    %]</span></td>
+    <td width=10% class=view align="right"><span class=view_views>[% desc.viewed %]&nbsp;</span></td></tr>
+<tr><td class=view><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+    <td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+    <td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td></tr>
+<tr><td valign="top">
+    <table border=0 cellpadding=0 cellspacing=0 width='100%' class=view><tbody>
+    <tr><td class=view><img border="0" width="3" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+	<td class=view valign="top" align="center"><br><img border=0 src="[% poster %]"><br><br></td>
+	<td class=view><img border="0" width="3" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td></tr>
+    <tr><td class=view><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+	<td class=view><img border="0" width="1" height="3" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+	<td class=view><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td></tr>
+    <tr><td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+	<td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+	<td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td></tr>
+    </tbody></table>
+    </td>
+    <td rowspan=1 colspan=2 class=view_main valign="top">
+	<span class=view_label>&nbsp;[% c.loc('Language:') %]</span> <span class=view>[% c.enc(desc.get_column('language')) %]</span><br>
+	<span class=view_label>&nbsp;[% c.loc('Genre:') %]</span> <span class=view>[%
+	    tt_genres = []; # <a href=id>name</a>
+	    MACRO genre_link(id, label) BLOCK;
+		'<a class=movie href="' _ c.uri_for('/', lang, 'movies', 'ctg', id); '">' _ label _ '</a>';
+	    END;
+	    genre_list = c.genres;
+	    tt_genres.push(genre_link(genre.genreid, c.find_by_id(genre_list, genre.genreid))) FOREACH genre IN desc.genres;
+	    tt_genres.join(' / ')
+	%]</span><br>
+	<span class=view_label>&nbsp;[% c.loc('Production:') %]</span> <span class=view>[% c.enc(desc.get_column('production')) %]</span><br>
+	<span class=view_label>&nbsp;[% c.loc('Director:') %]</span> <span class=view>[% c.enc(desc.get_column('director')) %]</span><br>
+	<span class=view_label>&nbsp;[% c.loc('Duration:') %]</span> <span class=view>[% c.sec2timef(desc.runtime) %]</span><br>
+	<span class=view_label>&nbsp;[% c.loc('Quality:') %]</span> <span class=view>[% c.find_by_id(c.quality, desc.quality) %]</span><br>
+	<span class=view_label>&nbsp;[% c.loc('Category:') %]</span> <span class=view_extra>[% desc.category %]</span><br>
+	<br><table border=0 cellpadding=3 cellspacing=0 width='95%' class=synopsis>
+	    <tr><td><div class=synopsis><span class=synopsis_label>[% c.loc('Description:') %]</span><br>[% c.enc(c.n2br(desc.get_column('synopsis'))) %]</div></td></tr></table><br>
+	<span class=view_label>&nbsp;[% c.loc('Actors:') %]</span><br>
+	<table border=0 cellpadding=3 cellspacing=0 class=view><tbody>
+[%   FOREACH cast IN desc.cast(desc_lang) -%]
+	<tr><td align=left>&nbsp;<a class=movie href="[%
+		c.uri_for('/', lang, 'movies', 'actor', c.enc(cast.get_column('actor'))) %]">[%
+		c.enc(cast.get_column('actor')) %]</a></td>
+	    <td align=left>&nbsp;-&nbsp;[% c.enc(cast.get_column('role')) %]</td></tr>
+[%   END -%]
+	</tbody></table>
+	<br>
+
+	<div>
+[%   FOREACH list IN rs_path.all -%]
+	<div id=Out[% list.range %] class=Online>
+	    <img id=Out[% list.range %]img class=Outline border=0 src="[% c.uri_for_static('images/check_plus.gif') %]" alt="[% c.loc('Particulary') %]">
+	    <span id=Out[% list.range %] class=Outline>[% list.range %]. [% list.note _ ' ' IF list.note; %]</span>
+	    <b><a class=movie href="[% c.uri_for('/', 'get', 'default', desc.id, list.range, list.file_name) %]">[% c.enc('Download') %]</a>
+	    <span id=Out[% list.range %] class=Outline>([% c.fsize(list.file_size) %])</b></span>
+	</div>
+	<div id=Out[% list.range %]details class=Details style="display: none;">
+[%      links = []; # <a href=id>name</a>
+        MACRO get_link(url_t, no, range, file_name) BLOCK;
+            '<a class=movie-select href="' _ c.uri_for('/', 'get', url_t, no, range, file_name); '">' _ url_t _ '</a>';
+        END;
+        FOREACH link IN c.config.storages.${list.storage};
+            links.push(get_link(link.key, desc.id, list.range, list.file_name)) IF link.key != 'default';
+        END; -%]
+	    [% IF links.size %]<b>[% c.loc('Another links to download:') %]</b> [% links.join(', '); %]<br>[% END %]
+	    [% IF list.file_len %]<b>[% c.loc('Runtime:') %]</b> [% c.sec2timef(list.file_len) %]<br>[% END %]
+	    [% IF list.audio %]<b>[% c.loc('Audio:') %]</b> [% list.audio %]<br>[% END %]
+	    [% IF list.video %]<b>[% c.loc('Video:') %]</b> [% list.video %]<br>[% END %]
+	    <b>[% c.loc('Download:') %]</b> [% c.loc('[_1] times', list.counter) %]
+        </div>
+[% END -%]
+	</div>
+
+    </td></tr>
+</tbody></table>
+
+[% IF user_granted -%]
+<p>[%c.loc('<b>The note:</b><br> In the top corner of a card of a film')%] <img border=0 src="[% c.uri_for_static('images/checkbox_off.gif') %]"> 
+[%c.loc('you can establish a mark about viewing')%] <img border=0 src="[% c.uri_for_static('images/checkbox_on.gif') %]">.
+[%c.loc('This mark is remembered and is visible in all lists.')%]</p>
+[% END -%]
+</div>

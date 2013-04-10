@@ -1,0 +1,59 @@
+/*
+ * ========================================
+ * styles for pagination links
+ * ========================================
+ */
+
+/* @group Pagination */
+
+.pagelink,
+.pagelinklast,
+.minipagelink,
+.minipagelinklast{
+    color: #000000;
+    background: #d8d8d8;
+    font-size: 12px;
+    padding: 2px 4px 2px 4px;
+}
+
+.pagelinklast,
+.minipagelinklast{
+/*    background: #c2c2c2; */
+    background: #e0e0e0;
+}
+
+
+.pagelinkcurrent{
+    color: #FFFFFF;
+    background: #808080;
+    font-size: 12px;
+    padding: 2px 4px 2px 4px;
+}
+
+.minipagelink,
+.minipagelinklast{
+    border: 1px solid #C2CFDF;
+    font-size: 10px;
+    margin: 0 1px 0 0;
+}
+
+.pagelink a:active,
+.pagelink a:visited,
+.pagelink a:link,
+.pagelinklast a:active,
+.pagelinklast a:visited,
+.pagelinklast a:link,
+.pagelinkcurrent a:active,
+.pagelinkcurrent a:visited,
+.pagelinkcurrent a:link,
+.minipagelink a:active,
+.minipagelink a:visited,
+.minipagelink a:link,
+.minipagelinklast a:active,
+.minipagelinklast a:visited,
+.minipagelinklast a:link{
+    color: #000000;
+    text-decoration: none;
+}
+
+/* @end */

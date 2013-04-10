@@ -1,0 +1,5 @@
+[% SET meta = meta _ '<link rel="stylesheet" href="' _ c.uri_for_static('css/widgets.css') _ '" type="text/css">' -%]
+<div class=main>
+
+
+</div>

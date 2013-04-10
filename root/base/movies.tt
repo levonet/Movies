@@ -1,0 +1,115 @@
+[% SET meta = meta _ '<link rel="stylesheet" href="' _ c.uri_for_static('css/pager.css') _ '" type="text/css">' -%]
+<div class=main>
+
+[% PROCESS top_bar.tt %]
+
+<br><!-- Header -->
+[% SWITCH current -%]
+[% CASE 'new' -%]
+    <form action="[% c.uri_for('/', lang, 'movies', 'new') %]" method=POST name=form>
+    [% c.loc('Upcoming movies') %] <select class="itemLst" name="__q">
+    [% FOREACH q IN q_select -%]
+	<option value=[% q.key; IF q.key == query %] selected[% END %]>[% q.value %]</option>
+    [% END -%]
+    </select>
+    <input class="submitBtn" type="submit" value="[%c.loc('Show')%]">
+    </form>
+[% CASE 'ctg' -%]
+    <b>[% c.loc('Select genre:') %]</b> [%
+	tt_genres = []; # <a href=id>name</a>
+	MACRO genre_link(id, label) BLOCK;
+	    '<a class="movie'; '-select' IF cur_genre == id; '" href="'_ c.uri_for('/', lang, 'movies', 'ctg', id); '">' _ label _ '</a>';
+	END;
+	genre_list = c.genres;
+	tt_genres.push(genre_link(genre.genreid, c.find_by_id(genre_list, genre.genreid))) FOREACH genre IN category;
+	tt_genres.join(' / ') %]<br>
+[% CASE 'alphabet' -%]
+    <div class=alphabet>
+[%   FOREACH q IN alphabet_main;
+	IF letter(c,q) -%]
+	<a class=movie[% '-select' IF cur_letter == c.enc(q) %] href="[% c.uri_for('/', lang, 'movies', 'alphabet', letter(c,q)) %]">[% letter(c,q) %]</a> [%
+	ELSE;
+	    c.enc(q) _ ' ';
+	END;
+    END;
+    IF alphabet_second;
+	'<br>';
+	FOREACH q IN alphabet_second;
+	    IF letter(c,q) -%]
+	    <a class=movie[% '-select' IF cur_letter == c.enc(q) %] href="[% c.uri_for('/', lang, 'movies', 'alphabet', letter(c,q)) %]">[% letter(c,q) %]</a> [%
+	    ELSE;
+		c.enc(q) _ ' ';
+	    END;
+	END;
+    END -%]
+    </div>
+[% CASE 'release' -%]
+    <b>[% c.loc('Select release year:') %]</b> [%
+	tt_years = []; # <a href=id>id</a>
+	MACRO rel_link(id) BLOCK;
+	    '<a class="movie'; '-select' IF cur_year == id; '" href="'_ c.uri_for('/', lang, 'movies', 'release', id); '">' _ id _ '</a>';
+	END;
+	tt_years.push(rel_link(rlist.ryear)) FOREACH rlist IN rel_years.all;
+	tt_years.join(' / ') %]<br>
+[% CASE 'search' -%]
+[%   SET meta = meta _ '<link rel="stylesheet" href="' _ c.uri_for_static('css/widgets.css') _ '" type="text/css">' -%]
+[%   PROCESS widgets.tt %]
+    <form action="[% c.uri_for('/', lang, 'movies', 'search') %]" method="post" name="search">
+    <div class="portlet">
+[% label_edit('q', c.loc('Search'), 50, 'Search movies', c.req.params.q) %]
+	<div class="formControls">
+	    <input class="submitBtnOk" type="submit" name="submit" value="[% c.loc('Search') %]" alt="Search">
+	</div>
+    </div>
+    </form>
+[%   IF status -%]
+    <div class="message_box">
+      [% status %]
+    </div>
+[%   END -%]
+[% END -%]
+
+[% PROCESS pager.tt -%]
+
+<!-- List -->
+[% bgflag = 0 -%]
+[% bgcolor = [ ' bgcolor=#ffffff', '' ] -%]
+[% SET user_granted = c.check_user_roles('Users') -%]
+<table class=movie border=0 width=95% cellpadding=3 cellspacing=0>
+[% IF current != 'list' -%]
+[% genre_list = c.genres -%]
+[%   FOREACH list IN rs_list.all -%]
+    <tr>[% IF user_granted %]<td align=center valign=center><img border=0 src="[% c.uri_for_static('images/checkbox_' _ (list.view_state(c.user.id) ? 'on' : 'off') _ '.gif') %]"></td>[% END %]
+    <td[% bgcolor.$bgflag %]>
+[%-    SWITCH loc_movies.${list.no}.type -%]
+[%       CASE 0 
+        %]<a class=movie href="[% c.uri_for('/', lang, 'movies', list.no, loc_movies.${list.no}.lang) %]">[% c.enc(loc_movies.${list.no}.title) %]</a>
+[%       CASE 1
+        %]<a class=movie href="[% c.uri_for('/', lang, 'movies', list.no, loc_movies.${list.no}.lang) %]">[% c.enc(loc_movies.${list.no}.title) %]</a> ([% list.orig_title %])
+[%       CASE;
+           list.orig_title;
+           FOREACH desc IN list.desc_langs %]
+	[<a class=movie href="[% c.uri_for('/', lang, 'movies', list.no, desc.get_column('lang')) %]" title="[% c.enc(desc.get_column('title')) %]">[% desc.get_column('lang') %]</a>]
+[%         END -%]
+[%     END %]<br>&nbsp;&nbsp;&nbsp; - [%
+         tt_genres = [];
+         tt_genres.push(c.find_by_id(genre_list, genre.genreid)) FOREACH genre IN list.genres;
+         tt_genres.join(' / ')
+       %] ([% list.ryear %])</td></tr>
+[%     SET bgflag = (bgflag) ? 0 : 1 -%]
+[%   END -%]
+[% ELSE -%]
+[%   FOREACH list IN rs_list.all -%]
+	<tr><td align=left[% bgcolor.$bgflag %]>[% c.dt2d(list.date_add) %]</td>
+	<td align=left[% bgcolor.$bgflag %]><a class=movie href="[% c.uri_for('/', lang, 'movies', list.no, 'edit', 'general') %]">[% list.no %]</a>
+	[% list.orig_title %] ([% list.ryear %])
+[%    FOREACH desc IN list.desc_langs -%]
+	[<a class=movie href="[% c.uri_for('/', lang, 'movies', list.no, desc.get_column('lang')) %]" title="[% c.enc(desc.get_column('title')) %]">[% desc.get_column('lang') %]</a>]
+[%     END -%]
+	</td></tr>
+[%     SET bgflag = (bgflag) ? 0 : 1 -%]
+[%   END -%]
+[% END -%]
+</table>
+
+</div>

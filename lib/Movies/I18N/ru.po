@@ -1,0 +1,438 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"POT-Creation-Date: 2009-11-01 10:57+2\n"
+"PO-Revision-Date: 2009-11-01 10:57+2\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lib/Movies/Controller/Movies.pm:131
+msgid " :: "
+msgstr ""
+
+#. ("FILM NAME")
+#. ($c->enc($rs->get_column('loc_title')
+#: lib/Movies/Controller/Movies.pm:276 lib/Movies/Controller/Movies.pm:313
+msgid " :: %1"
+msgstr ""
+
+#. ($c->enc($actor_name)
+#: lib/Movies/Controller/Movies.pm:258
+msgid " :: %1 :: Filmography"
+msgstr " :: %1 :: Фильмография"
+
+#: lib/Movies/Controller/Movies.pm:120 lib/Movies/Controller/Movies.pm:130
+msgid " :: By genre"
+msgstr " :: По жанру"
+
+#: lib/Movies/Controller/Movies.pm:197 lib/Movies/Controller/Movies.pm:206
+msgid " :: By name"
+msgstr " :: По имени"
+
+#: lib/Movies/Controller/Movies.pm:83
+msgid " :: New & Upcoming movies"
+msgstr " :: Новые поступления"
+
+#: lib/Movies/Controller/Movies.pm:251
+msgid " :: Release movie list"
+msgstr " :: По году выпуска"
+
+#. (desc.len)
+#: root/base/view.tt:50
+msgid "%1 min."
+msgstr "%1 мин."
+
+#. (path.file_size)
+#: root/base/view.tt:71
+msgid "(%1 Mb)"
+msgstr "(%1 Мб)"
+
+#: root/base/view.tt:70
+msgid ".."
+msgstr ".."
+
+#: lib/Movies/Controller/Movies.pm:92
+msgid "100 last"
+msgstr "100 крайних"
+
+#: lib/Movies/Controller/Movies.pm:89
+msgid "15 last"
+msgstr "15 крайних"
+
+#: lib/Movies/Controller/Movies.pm:90
+msgid "25 last"
+msgstr "25 крайних"
+
+#: lib/Movies/Controller/Movies.pm:91
+msgid "50 last"
+msgstr "50 крайних"
+
+#: root/base/view.tt:77
+msgid "<b>The note:</b><br> In the top corner of a card of a film"
+msgstr "<b>Примечание:</b><br> В верхнем углу карточки фильма"
+
+#: lib/Movies.pm:181
+msgid "Accident"
+msgstr "Катастрофа"
+
+#: root/base/view.tt:54
+msgid "Actors:"
+msgstr "Актеры:"
+
+#: root/base/menu_main.tt:8
+msgid "Add movie"
+msgstr "Добавить фильм"
+
+#: root/base/menu_main.tt:14
+msgid "Administration"
+msgstr "Администрирование"
+
+#: lib/Movies/Schema.pm:60
+msgid "Administrator"
+msgstr "Администратор"
+
+#: lib/Movies.pm:175
+msgid "Adventures"
+msgstr "Приключения"
+
+#: lib/Movies.pm:159
+msgid "Animation"
+msgstr "Анимация"
+
+#: lib/Movies/Schema.pm:59
+msgid "Anonymous"
+msgstr "Аноним"
+
+#: lib/Movies.pm:191 lib/Movies/Controller/Movies.pm:183 lib/Movies/Controller/Movies.pm:184 lib/Movies/Controller/Movies.pm:217 lib/Movies/Controller/Movies.pm:218
+msgid "Another"
+msgstr "Другое"
+
+#: root/base/auth.tt:25
+msgid "Bad username or password."
+msgstr "Неверное имя или пароль."
+
+#: root/base/menu_main.tt:5 root/base/top_bar.tt:5
+msgid "By alphabet"
+msgstr "По алфавиту"
+
+#: root/base/menu_main.tt:4 root/base/top_bar.tt:4
+msgid "By genre"
+msgstr "По жанру"
+
+#: root/base/view.tt:51
+msgid "Category:"
+msgstr "Категория:"
+
+#: lib/Movies.pm:166
+msgid "Comedy"
+msgstr "Комедия"
+
+#: lib/Movies.pm:186
+msgid "DB ERROR"
+msgstr ""
+
+#: root/base/menu_main.tt:11
+msgid "Delete"
+msgstr "Удалить"
+
+#: root/base/view.tt:53
+msgid "Description:"
+msgstr "Описание:"
+
+#: lib/Movies.pm:179
+msgid "Detective"
+msgstr "Детектив"
+
+#: root/base/view.tt:49
+msgid "Director:"
+msgstr "Режиссер:"
+
+#. (range)
+#: root/base/view.tt:68
+msgid "Download %1"
+msgstr "Загрузить %1"
+
+#: lib/Movies.pm:165
+msgid "Drama"
+msgstr "Драма"
+
+#: root/base/view.tt:50
+msgid "Duration:"
+msgstr "Продолжительность:"
+
+#: root/base/menu_main.tt:10
+msgid "Edit"
+msgstr "Редактировать"
+
+#: lib/Movies.pm:169
+msgid "Fantastic"
+msgstr "Фантастика"
+
+#: lib/Movies.pm:168
+msgid "Fantasy"
+msgstr "Фэнтэзи"
+
+#: lib/Movies.pm:177
+msgid "Fighting"
+msgstr "Боевые искусства"
+
+#. (pager.total_entries)
+#: root/base/movies.tt:55
+msgid "Found: %1"
+msgstr "Найдено: %1"
+
+#: root/base/menu_main.tt:7
+msgid "Full list"
+msgstr "Весь список"
+
+#: root/base/view.tt:40
+msgid "Genre:"
+msgstr "Жанр:"
+
+#: root/base/message.tt:8
+msgid "Go directly to "
+msgstr ""
+
+#: root/base/movies.tt:59
+msgid "Goto first page"
+msgstr "На первую страницу"
+
+#: root/base/movies.tt:75
+msgid "Goto last page"
+msgstr "На крайнюю страницу"
+
+#: lib/Movies.pm:209
+msgid "Horror and violence scenes are minimum"
+msgstr "Сцены ужаса и насилия минимальны"
+
+#: lib/Movies.pm:172
+msgid "Horrors"
+msgstr "Ужасы"
+
+#: root/base/view.tt:39
+msgid "Language:"
+msgstr "Язык:"
+
+#: root/base/auth.tt:22
+msgid "Login"
+msgstr "Войти"
+
+#: root/base/auth.tt:5
+msgid "Logout"
+msgstr "Выйти"
+
+#: lib/Movies.pm:211
+msgid "Materials \"the adult \" character"
+msgstr "Материалы \"взрослого\" характера"
+
+#: lib/Movies.pm:164
+msgid "Melodrama"
+msgstr "Мелодрама"
+
+#: lib/Movies/Controller/Movies.pm:28
+msgid "Movies"
+msgstr "Фильмы"
+
+#: lib/Movies.pm:189
+msgid "Music"
+msgstr "Музыка"
+
+#: lib/Movies.pm:190
+msgid "Musical"
+msgstr "Мюзикл"
+
+#: lib/Movies.pm:170
+msgid "Mysticism"
+msgstr "Мистика"
+
+#: root/base/auth.tt:13
+msgid "Name"
+msgstr "Имя"
+
+#: root/base/menu_main.tt:3 root/base/top_bar.tt:3
+msgid "New"
+msgstr "Новое"
+
+#: root/base/movies.tt:72
+msgid "Next page"
+msgstr "Следующая страница"
+
+#: lib/Movies/Controller/Movies.pm:87
+msgid "One month"
+msgstr "За месяц"
+
+#. (range)
+#: root/base/view.tt:69
+msgid "Open %1"
+msgstr "Открыть %1"
+
+#: root/base/movies.tt:57
+msgid "Open menu"
+msgstr "Открыть меню"
+
+#. (pager.last_page)
+#: root/base/movies.tt:57
+msgid "Pages %1 "
+msgstr "Страниц %1"
+
+#: root/base/auth.tt:18
+msgid "Password"
+msgstr "Пароль"
+
+#: root/base/movies.tt:62
+msgid "Previous page"
+msgstr "Предыдущая страница"
+
+#: root/base/view.tt:48
+msgid "Production:"
+msgstr "Производство:"
+
+#: root/base/auth.tt:4
+msgid "Profile"
+msgstr "Профиль"
+
+#: lib/Movies.pm:212
+msgid "Scenes of sex, violence, not standard lexicon"
+msgstr "Сцены секса, насилия, ненормативная лексика"
+
+#: root/base/movies.tt:18
+msgid "Select genre:"
+msgstr "Выбрать жанр"
+
+#: lib/Movies.pm:163
+msgid "Sensuality"
+msgstr "Эротика"
+
+#: root/base/movies.tt:15
+msgid "Show"
+msgstr "Показать"
+
+#: root/base/auth.tt:24
+msgid "Sign Up"
+msgstr "Регистрация"
+
+#: lib/Movies.pm:188
+msgid "Sports"
+msgstr "Спорт"
+
+#: lib/Movies.pm:160
+msgid "The children's"
+msgstr "Детский"
+
+#: lib/Movies.pm:176
+msgid "The criminal"
+msgstr "Криминальный"
+
+#: lib/Movies.pm:182
+msgid "The documentary"
+msgstr "Документальный"
+
+#: lib/Movies.pm:161 lib/Movies.pm:208
+msgid "The family"
+msgstr "Семейный"
+
+#: lib/Movies.pm:183
+msgid "The historical"
+msgstr "Исторический"
+
+#: lib/Movies.pm:174
+msgid "The insurgent"
+msgstr "Боевик"
+
+#: lib/Movies.pm:162
+msgid "The love novel"
+msgstr "Любовный роман"
+
+#: lib/Movies.pm:187
+msgid "The nature"
+msgstr "Природа"
+
+#: lib/Movies.pm:171
+msgid "The psychological"
+msgstr "Психологический"
+
+#. ('<span class="error_detail">' . $c->req->uri->clone . '</span>')
+#: lib/Movies/Controller/Root.pm:67
+msgid "The requested URL was not found: %1"
+msgstr "Запрошеный URL был не найден: %1"
+
+#: lib/Movies.pm:184
+msgid "The scientific"
+msgstr "Научный"
+
+#: lib/Movies.pm:185
+msgid "The training"
+msgstr "Обучающий"
+
+#: lib/Movies.pm:210
+msgid "There are scenes of violence and drugs"
+msgstr "Встречаются сцены насилия и наркотиков"
+
+#: lib/Movies/Controller/Movies.pm:86
+msgid "This Week"
+msgstr "За эту неделю"
+
+#: root/base/view.tt:79
+msgid "This mark is remembered and is visible in all lists."
+msgstr "Эта отметка запоминается и видна во всех списках."
+
+#: lib/Movies.pm:173
+msgid "Thriller"
+msgstr "Триллер"
+
+#: root/base/top_bar.tt:7
+msgid "Total movies"
+msgstr "Всего фильмов"
+
+#: lib/Movies.pm:167
+msgid "Tragicomedy"
+msgstr "Трагикомедия"
+
+#: lib/Movies/Controller/Movies.pm:88
+msgid "Two month"
+msgstr "За 2 месяца"
+
+#: root/base/movies.tt:10
+msgid "Upcoming movies"
+msgstr "Поступившие фильмы"
+
+#: lib/Movies.pm:180
+msgid "War"
+msgstr "Война"
+
+#: lib/Movies.pm:178
+msgid "Western"
+msgstr "Вестерн"
+
+#: root/base/message.tt:11
+msgid "do not pass jail, do not collect $200..."
+msgstr ""
+
+#: root/base/message.tt:10
+msgid "login"
+msgstr ""
+
+#: root/base/message.tt:9
+msgid "or"
+msgstr ""
+
+#: root/base/message.tt:3
+msgid "shrinked head"
+msgstr ""
+
+#: root/base/message.tt:8
+msgid "start"
+msgstr ""
+
+#: root/base/view.tt:78
+msgid "you can establish a mark about viewing"
+msgstr "Вы можете устанавливать отметку о просмотре"

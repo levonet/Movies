@@ -1,0 +1,33 @@
+[% IF pager -%]<!-- Pager -->
+[%   pageidx_start = pager.current_page - (displaypages - 1) / 2 -%]
+[%   pageidx_end = pager.current_page + (displaypages - 1) / 2 -%]
+[%   SET pageidx_start = pager.first_page IF pageidx_start < pager.first_page -%]
+[%   SET pageidx_end = pager.last_page IF pageidx_end >= pager.last_page -%]
+<br><table cellspacing="0">
+<tr><td style='padding-left:0px' width="40%" valign="middle" nowrap="nowrap"><div>
+<span class="pagelink">[% c.loc('Found: [_1]', pager.total_entries) %]</span>
+[%   IF pager.first_page != pager.last_page -%]
+<span class="pagelink" id='page-jump'>[% c.loc('Pages [_1] ', pager.last_page) %]<img src="[% c.uri_for_static('images/menu_action_down.gif') %]" alt='V' title="[% c.loc('Open menu') %]" border='0' /></span>&nbsp;&nbsp;
+[%     IF (pager.current_page - (displaypages - 1) / 2) > pager.first_page -%]
+<span class="pagelinklast"><a href="[% c.uri_for_pager({}) %]" title="[% c.loc('Goto first page') %]">&laquo;</a></span>
+[%     END -%]
+[%     IF pager.previous_page -%]
+<span class="pagelink"><a href="[% c.uri_for_pager({page=>pager.previous_page}) %]" title="[% c.loc('Previous page') %]">&lt;</a></span>
+[%     END -%]
+[%     FOREACH idx IN [ pageidx_start .. pageidx_end ] -%]
+[%       IF idx == pager.current_page -%]
+<span class="pagelinkcurrent">[% idx %]</span>
+[%       ELSE -%]
+<span class="pagelink"><a href="[% c.uri_for_pager({page=>idx}) %]" title="[% idx %]">[% idx %]</a></span>
+[%       END -%]
+[%     END -%]
+[%     IF pager.next_page -%]
+<span class="pagelink"><a href="[% c.uri_for_pager({page=>pager.next_page}) %]" title="[% c.loc('Next page') %]">&gt;</a></span>
+[%     END -%]
+[%     IF (pager.current_page + (displaypages - 1) / 2) < pager.last_page -%]
+<span class="pagelinklast"><a href="[% c.uri_for_pager({page=>pager.last_page}) %]" title="[% c.loc('Goto last page') %]">&raquo;</a></span>
+[%     END -%]
+[%   END -%]
+</div></td></tr>
+</table>
+[% END -%]

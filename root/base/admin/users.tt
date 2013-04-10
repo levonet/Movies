@@ -1,0 +1,25 @@
+[% SET meta = meta _ '<link rel="stylesheet" href="' _ c.uri_for_static('css/pager.css') _ '" type="text/css">' -%]
+<div class=main>
+
+[% PROCESS pager.tt -%]
+
+[% bgflag = 0 -%]
+[% bgcolor = [ ' bgcolor=#ffffff', '' ] -%]
+  <table class=movie border=0 width=100% cellpadding=3 cellspacing=0>
+[% FOREACH list IN user_list.all -%]
+    <tr>
+      <td[% bgcolor.$bgflag %]>[% list.id %] </td>
+      <td[% bgcolor.$bgflag %]>[% list.login %] </td>
+      <td[% bgcolor.$bgflag %]>[% list.active %] </td>
+      <td[% bgcolor.$bgflag %]>[% list.name %] </td>
+      <td[% bgcolor.$bgflag %]>[% list.email_address %] </td>
+      <td[% bgcolor.$bgflag %]>[% list.login_time %] </td>
+      <td[% bgcolor.$bgflag %]>[% list.login_host %] </td>
+      <td[% bgcolor.$bgflag %]>
+         [<a class=movie href="[% c.uri_for('/', lang, 'admin', 'roles', list.id) %]" title="Roles">[% c.loc('Roles') %]</a>]
+      </td>
+    </tr>
+[%   SET bgflag = (bgflag) ? 0 : 1 -%]
+[% END -%]
+  </table>
+</div>

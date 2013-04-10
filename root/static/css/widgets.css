@@ -1,0 +1,50 @@
+table.boxhead {
+  color: #74748a;
+  font-family: verdana, arial, helvetica, sans-serif;
+  position: relative;
+  font-size: 12px;
+  left: 1px;
+  bottom: -1px;
+  border: 1px solid #83b6ff;
+  border-collapse: collapse;
+  background: #e6eaff;
+}
+table.boxhead a:link {
+  text-decoration: none;
+  color: #000072;
+}
+table.boxhead a:visited {
+  text-decoration: none;
+  color: #000072;
+}
+table.boxhead a:hover {
+  text-decoration: none;
+  color: #CC3333;
+}
+
+td.boxheadActive {
+  color: #4b4b68;
+  background-color: #b0c4de;
+}
+td.boxheadActive a:link {
+  text-decoration: none;
+  color: #CC3333;
+}
+td.boxheadActive a:visited {
+  text-decoration: none;
+  color: #CC3333;
+}
+td.boxheadActive a:hover {
+  text-decoration: none;
+  color: #000072;
+}
+
+
+table.box {
+  color: #4b4b68;
+  font-family: verdana, arial, helvetica, sans-serif;
+  position: relative;
+  font-size: 12px;
+  border: 2px solid #83b6ff;
+  background-color: transparent;
+}

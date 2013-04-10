@@ -1,0 +1,56 @@
+[%# USE encoding 'utf-8' -%]
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>[% title %]</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="[% c.uri_for_static('css/wrapper.css') %]" type="text/css">
+  [% meta %]
+</head>
+<body[% body_attr %]>
+<table border="0" cellpadding="0" cellspacing="0" width="739px">
+<tbody>
+  <tr valign="top">
+<!-- Заголовок -->
+    <td width="172px"><a href="/"><img border="0" width="172px" height="64px" src="[% c.uri_for_static('images/w0_tl.gif') %]"></a></td>
+    <td width="544px"><img border="0" width="544px" height="64px" src="[% c.uri_for_static('images/w0_tc.gif') %]"></td>
+    <td width="23px"><img border="0" width="23px" height="64px" src="[% c.uri_for_static('images/w0_tr.gif') %]"></td>
+  </tr><tr>
+<!-- Меню -->
+    <td valign="top">
+      <br>
+      <table border="0" cellpadding="0" cellspacing="0" width="172px">
+	<tbody>
+	<tr valign="top"><td width="172px"><img border="0" width="172px" height="14px" src="[% c.uri_for_static('images/w1_t.gif') %]"></td></tr>
+	<tr><td background="[% c.uri_for_static('images/w1_cg.gif') %]">[% PROCESS menu_main.tt %]</td></tr>
+	<tr><td><img border="0" width="172px" height="14px" src="[% c.uri_for_static('images/w1_b.gif') %]"></td></tr>
+	</tbody>
+      </table>
+      [% PROCESS menu_extra.tt %]
+      <br>
+      <br>
+      <br>
+    </td>
+<!-- Текст -->
+    <td valign="top" rowspan="1" colspan="2">
+      <table border="0" cellpadding="0" cellspacing="0" width="567px">
+	<tbody>
+	<tr valign="top"><td width="15px">&nbsp;</td>
+	  <!-- <td width="452px"><br><div class="strict">[% url_path %]&nbsp;</div><br></td>
+	  <td width="100px" align="right" valign="middle">[% print %]&nbsp;</td>--></tr>
+	<tr valign="top"><td>&nbsp;</td><td colspan="2">[% content %]</td></tr>
+	</tbody>
+      </table>
+      <br>
+    </td>
+  </tr><tr>
+<!-- SB -->
+    <td style="background: url([% c.uri_for_static('images/w0_bc.gif') %]) no-repeat;" rowspan="1" colspan="2" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="http://www.catalystframework.org/"><img alt="Powered by Catalyst Web Framework" title="Powered by Catalyst Web Framework" src="[% c.uri_for_static('images/btn_88x31_built.png') %]" border=0 width=88 height=31></a></td>
+    <td><img border="0" width="23px" height="45px" src="[% c.uri_for_static('images/w0_br.gif') %]"></td>
+  </tr>
+</tbody>
+</table>
+</body>
+</html>
+[% html_off %]

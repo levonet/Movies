@@ -1,0 +1,22 @@
+[% SET meta = meta _ '<link rel="stylesheet" href="' _ c.uri_for_static('css/widgets.css') _ '" type="text/css">' -%]
+<div class=main>
+
+[% IF c.req.params.auth_err -%]
+  <div class="message_box">
+    [% c.loc('Bad username or password.') %]
+  </div>
+[% END -%]
+
+[% PROCESS widgets.tt %]
+
+<form action="[% c.uri_for('/', 'login') %]" method="POST" name="login2">
+  <input name=aaa_redir type=hidden value="[% c.req.params.aaa_redir %]">
+  <input name=aaa_lang type=hidden value="[% lang %]">
+  <div class="portlet">
+[% label_edit('aaa_name', c.loc('Name'), 20, 'Name', c.req.params.aaa_name, '> <a class=main href="' _ c.uri_for('/', lang, 'auth', 'signup') _ '">' _ c.loc('Sign Up') _ '</a' ) %]
+[% label_password('aaa_passwd', c.loc('Password'), 20, 'Password', '', '> <a class=main href="' _ c.uri_for('/', lang, 'auth', 'remind') _ '">' _ c.loc('Forgot?') _ '</a' ) %]
+    <input class="submitBtnOk" type="submit" name="submit" value="[% c.loc('Login') %]" alt="Login">
+  </div>
+</form>
+
+</div>

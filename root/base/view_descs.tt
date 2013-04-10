@@ -1,0 +1,59 @@
+<div class=main>
+
+[% PROCESS top_bar.tt -%]
+
+<br>
+<table border=0 cellpadding=0 cellspacing=0 width='100%' class=view><tbody>
+<tr><td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+    <td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+    <td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td></tr>
+<tr valign="top">
+    <td rowspan=1 colspan=2 class=view><span class=view_title>&nbsp;[% c.enc(general.orig_title) %] ([% general.ryear %])</span></td>
+    <td width=10% class=view align="right"><span class=view_views>[% general.viewed %]&nbsp;</span></td></tr>
+<tr><td class=view><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+    <td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+    <td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td></tr>
+<tr><td valign="top">
+    <table border=0 cellpadding=0 cellspacing=0 width='100%' class=view><tbody>
+    <tr><td class=view><img border="0" width="3" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+	<td class=view valign="top" align="center"><br><img border=0 src="[% poster %]"><br><br></td>
+	<td class=view><img border="0" width="3" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td></tr>
+    <tr><td class=view><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+	<td class=view><img border="0" width="1" height="3" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+	<td class=view><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td></tr>
+    <tr><td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+	<td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td>
+	<td class=view_shadow><img border="0" width="1" height="1" src="[% c.uri_for_static('images/dot_tr.gif') %]"></td></tr>
+    </tbody></table>
+    </td>
+    <td rowspan=1 colspan=2 class=view_main valign="top">
+	<span class=view_label>&nbsp;[% c.loc('Genre:') %]</span> <span class=view>[%
+	    tt_genres = []; # <a href=id>name</a>
+	    MACRO genre_link(id, label) BLOCK;
+		'<a class=movie href="' _ c.uri_for('/', lang, 'movies', 'ctg', id); '">' _ label _ '</a>';
+	    END;
+	    genre_list = c.genres;
+	    tt_genres.push(genre_link(genre.genreid, c.find_by_id(genre_list, genre.genreid))) FOREACH genre IN general.genres;
+	    tt_genres.join(' / ')
+	%]</span><br>
+	<span class=view_label>&nbsp;[% c.loc('Duration:') %]</span> <span class=view>[% c.sec2timef(general.runtime) %]</span><br>
+	<span class=view_label>&nbsp;[% c.loc('Quality:') %]</span> <span class=view>[% c.find_by_id(c.quality, general.quality) %]</span><br>
+	<span class=view_label>&nbsp;[% c.loc('Category:') %]</span> <span class=view_extra>[% general.category %]</span><br>
+	<br>
+	<span class=view_label>&nbsp;[% c.loc('Descriptions:') %]</span><br>
+	<table class=movie border=0 width=95% cellpadding=3 cellspacing=0>
+[%     bgflag = 0 -%]
+[%     bgcolor = [ ' bgcolor=#f7f8ff', ' bgcolor=#ffffff' ] -%]
+[%     FOREACH list IN rs_list.all -%]
+	<tr><td[% bgcolor.$bgflag %] width=10%>
+	  [<a class=movie href="[% c.uri_for('/', lang, 'movies', no, list.desc_lang) %]">[% list.desc_lang %]</a>]
+	</td><td[% bgcolor.$bgflag %]>
+	  <a class=movie href="[% c.uri_for('/', lang, 'movies', no, list.desc_lang) %]">[% list.title %]</a>
+	</td></tr>
+[%       SET bgflag = (bgflag) ? 0 : 1 -%]
+[%     END -%]
+	</table>
+    </td></tr>
+</tbody></table>
+
+</div>

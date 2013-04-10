@@ -1,0 +1,25 @@
+ * варианты категорий: static, tags, local_tags
+ * категории local_tags: +таблица tags: id, lang, tag
+ * в админ: таблица lang/tag_id - перевод категорий по основным языкам
+ * в список категорий добавить кол-во фильмов(карточек)
+ * в списки фильмов добавить выбор критерия сортировки (в т.ч. релевантность)
+ * добавить тип upload файла
+ * добавить videoshot с выбором по диапазону сек. [1 3 5 10 60 120 200]
+ * генерировать изображения /vs/$id$/$X$x$Y$_$sec$.jpg
+ * добавить возможность отображать videoshot в конфиг
+ * ajax - prototype
+
+ * initial_id => '0000009999' вынисти в conf
+ * security and roles
+ * авторизация: local, gmail, facebook ...
+ * news (выбор смеживать языки по типу comments или показывать раздельно)
+ * comments (при отображении текста на неродном языке цвет=светлосерый)
+ * User settings
+ * Profile
+ * Admin roles
+ * Admin users
+ * Sign up
+ * Ведение собственной оценки пользователями
+ * popup query list (AJAX)
+ * Button in Edit>Path to update db rows from files in storage.
+ * $c->uri_for_default preset in config

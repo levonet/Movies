@@ -1,0 +1,17 @@
+[% SET body_attr = body_attr _ ' onLoad="setTimeout(\'delayer()\',1000);"' -%]
+[% SET html_off = html_off _ '<script language="Javascript">
+<!--
+function delayer() {
+    window.location="' _ uri_redir _ '";
+}
+// -->
+</script>
+' -%]
+
+<div class=main>
+  <div class="message_box">
+    <h2>[% c.loc('Please wait...') %]</h2>
+    [% message %]<br>
+  </div>
+</div>
+

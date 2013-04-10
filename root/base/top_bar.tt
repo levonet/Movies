@@ -1,0 +1,11 @@
+<table class=main border=0 cellpadding=2 cellspacing=2 bgcolor=lightsteelblue width=100%>
+<tr><td align=left>::
+<b><a class=[%IF current == 'new' %]active[% ELSE %]main[% END %] href="[% c.uri_for('/', lang, 'movies', 'new') %]">[%c.loc('New')%]</a></b> ::
+<b><a class=[%IF current == 'ctg' %]active[% ELSE %]main[% END %] href="[% c.uri_for('/', lang, 'movies', 'ctg') %]">[%c.loc('By genre')%]</a></b> ::
+<b><a class=[% current == 'alphabet' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'movies', 'alphabet') %]">[%c.loc('By alphabet')%]</a></b> ::
+<b><a class=[% current == 'search' ? 'active' : 'main' %] href="[% c.uri_for('/', lang, 'movies', 'search') %]">[%c.loc('Search')%]</a></b> ::
+</td>
+<td align=right style="color: #ffffff; font-weight: bold;">[%c.loc('Total movies')%]: 
+<span style="color: #0052ce; font-weight: normal;">[% files_cnt %]</span>, 
+<span style="color: #0052ce; font-weight: normal;">[% c.fsize(files_sz) %]</span></td></tr>
+</table>

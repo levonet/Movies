@@ -1,0 +1,275 @@
+[% SET meta = meta _ '<link rel="stylesheet" href="' _ c.uri_for_static('css/widgets.css') _ '" type="text/css">' -%]
+<div class=main>
+
+[% PROCESS top_bar.tt %]
+[% PROCESS widgets.tt %]
+
+<br>
+[% menu_boxhead(emenu, emenu_range, 'edit', lang, no) %]
+
+<table class=box border=0 cellpadding=5 cellspacing=0 width=100%>
+<tr><td>
+[% IF c.req.params.status -%]
+  <div class="message_box">
+    [% c.loc('Status: [_1]', c.req.params.status) %]
+  </div>
+[% END -%]
+
+[% IF emenu.general.current -%]
+<!-- #####  GENERAL  ####################################### -->
+[%   SWITCH current -%]
+[%   CASE 'create' -%]
+    <form action="[% c.uri_for('/', lang, 'movies', 'create_upd') %]" method="post" name="general">
+[%   CASE 'edit' -%]
+    <form action="[% c.uri_for('/', lang, 'movies', no, 'edit', 'general_upd') %]" method="post" name="general">
+[%   END -%]
+    <div class="portlet">
+[% label_edit('no', c.loc('No'), 12, 'Number', rs_data.no, 'readonly') %]
+[% label_edit('date_add', c.loc('Added'), 12, 'Date', c.dt2d(rs_data.date_add)) %]
+[% label_edit_sel('general','orig_lang', c.loc('Language'), 12, 'Language of original movie name', rs_data.orig_lang) %]
+[% label_edit('orig_title', c.loc('Original name'), 50, 'Original name', rs_data.orig_title) %]
+[% label_edit('ryear', c.loc('Year'), 12, 'Date of production', rs_data.ryear) %]
+[% label_select('quality', c.loc('Quality'), c.quality, rs_data.quality) %]
+[% label_select_alt('category', c.loc('Category'), c.category, rs_data.category) %]
+[% label_edit('runtime', c.loc('Duration'), 12, 'Length of movie in min', c.sec2time(rs_data.runtime), '> <i>' _ c.loc('not required') _ '</i') %]
+	<div class="formControls">
+	    <input class="submitBtnOk" type="submit" name="submit" value="[% c.loc('Save') %]" alt="Save">
+	    <input class="submitBtnDel" type="button" name="delete" value="[% c.loc('Delete') %]" alt="Delete"
+		onclick='javascript:location.href="[% c.uri_for('/', lang, 'movies', no, 'delete') %]"'>
+	</div>
+    </div>
+    </form>
+[%   IF current == 'edit' -%]
+    <hr>
+    <img border=0 src="[% poster %]">
+    <br><br>
+    <form action="[% c.uri_for('/', lang, 'movies', no, 'edit', 'poster_upd') %]" method="post" name="poster" enctype="multipart/form-data">
+    <div class="portlet">
+[% label_file('imgfile', c.loc('Poster'), 30, 'Poster file : ' _ c.config.posters_image_exts) %]
+	<div class="formControls">
+	    <input class="submitBtnOk" type="submit" name="submit" value="[% c.loc('Send') %]" alt="Send">
+	    <input class="submitBtnDel" type="button" name="delete" value="[% c.loc('Delete') %]" alt="Delete"
+		onclick='javascript:location.href="[% c.uri_for('/', lang, 'movies', no, 'edit', 'poster_del') %]"'>
+	</div>
+    </div>
+    </form>
+[%   END -%]
+[% END -%]
+[% IF emenu.desc.current -%]
+<!-- #####  DESCRIPTION  ################################### -->
+    <form action="[% c.uri_for('/', lang, 'movies', no, 'edit', 'desc') %]" method="post" name="desc_add">
+    <div class="portlet">
+[% label_edit('no', c.loc('No'), 12, 'Number', no, 'readonly') %]
+    </div>
+</td><td align="left">
+    <div class="portlet">
+[% label_edit_sel('desc_add', 'desc_lang', c.loc('New lang.'), 12, 'New description language', c.req.params.desc_lang) %]
+    </div>
+</td><td align="left">
+    <div class="portlet">
+	<div class="formControls"><input class="submitBtn" type="submit" name="submit" value="[% c.loc('Add description') %]" alt="Add description"></div>
+    </div>
+    </form>
+</td></tr><tr><td colspan=3>
+<hr>
+[%   IF c.req.params.desc_lang -%]
+    <form action="[% c.uri_for('/', lang, 'movies', no, 'edit', 'desc_upd') %]" method="post" name="desc">
+    <div class="portlet">
+	<input type=hidden name=no value=[% no %]>
+	<input type=hidden name=desc_lang value=[% c.req.params.desc_lang %]>
+[% label_edit('title', c.loc('Name'), 50, 'Name', rs_data.title) %]
+[% label_edit_sel('desc','language', c.loc('Language'), 25, 'Language of translation', rs_data.language) %]
+[% label_edit_sel('desc','production', c.loc('Production'), 45, 'Production', rs_data.production) %]
+[% label_edit_sel('desc','director', c.loc('Director'), 25, 'Director', rs_data.director) %]
+[% label_edit_sel('desc','country', c.loc('Country'), 25, 'Country', rs_data.country) %]
+[% label_textarea('synopsis', c.loc('Synopsis'), 50, 7, rs_data.synopsis) %]
+	<div class="formControls">
+	    <input class="submitBtnOk" type="submit" name="submit" value="[% c.loc('Save') %]" alt="Save">
+	    <input class="submitBtnDel" type="button" name="delete" value="[% c.loc('Delete') %]" alt="Delete"
+		onclick='javascript:location.href="[% c.uri_for('/', lang, 'movies', no, 'edit', 'desc_del', {desc_lang => rs_data.desc_lang}) %]"'>
+	</div>
+    </div>
+    </form>
+[%   ELSE -%]
+<table class=movie border=0 width=95% cellpadding=3 cellspacing=0>
+[%     bgflag = 0 -%]
+[%     bgcolor = [ ' bgcolor=#ffffff', '' ] -%]
+[%     FOREACH list IN rs_list.all -%]
+    <tr><td[% bgcolor.$bgflag %] width=10%>
+        [<a class=movie href="[% c.uri_for('/', lang, 'movies', no, 'edit', 'desc', {desc_lang => list.desc_lang}) %]">[% list.desc_lang %]</a>]
+    </td><td[% bgcolor.$bgflag %]>
+        <a class=movie href="[% c.uri_for('/', lang, 'movies', no, 'edit', 'desc', {desc_lang => list.desc_lang}) %]">[% list.title %]</a>
+    </td><td[% bgcolor.$bgflag %] align=right>
+        [<a class=movie href="[% c.uri_for('/', lang, 'movies', no, list.desc_lang) %]">[% c.loc('View') %]</a>]
+        [<a class=movie href="[% c.uri_for('/', lang, 'movies', no, 'edit', 'desc_del', {desc_lang => list.desc_lang}) %]">[% c.loc('Delete') %]</a>]
+    </td></tr>
+[%       SET bgflag = (bgflag) ? 0 : 1 -%]
+[%     END -%]
+</table>
+[%   END -%]
+[% END -%]
+[% IF emenu.cast.current -%]
+<!-- #####  CAST  ########################################## -->
+<script language="Javascript">
+<!--
+function selectLang() {
+    location.href=document.select_lang.desc_lang.options[document.select_lang.desc_lang.selectedIndex].value
+}
+// -->
+</script>
+    <form name="select_lang">
+    <div class="portlet">
+[% label_edit('no', c.loc('No'), 12, 'Number', no, 'readonly') %]
+    </div>
+</td><td align="right">
+    <div class="portlet">
+[% label_select('desc_lang', c.loc('Lang.'), desc_langs,
+	c.uri_for('/', lang, 'movies', no, 'edit', 'cast', {desc_lang => c.req.params.desc_lang}), 'onchange="selectLang()"') %]
+    </div>
+    </form>
+</td></tr><tr><td colspan=2>
+<hr>
+[%   IF c.req.params.desc_lang -%]
+    <table class=movie border=0 width=95% cellpadding=3 cellspacing=0>
+    <tr><form action="[% c.uri_for('/', lang, 'movies', no, 'edit', 'cast_add') %]" method="post" name="cast">
+    <input type=hidden name=no value=[% no %]>
+    <input type=hidden name=desc_lang value=[% c.req.params.desc_lang %]>
+    <th align=left valign=bottom>
+	<div class="portlet">
+[% label_edit_sel('cast','actor', c.loc('Actor'), 20, 'Actr') %]
+	</div>
+    </th><th align=left valign="bottom">
+	<div class="portlet">
+[% label_edit('role', c.loc('Role'), 20, 'Role') %]
+	</div>
+    </th><th>
+	<div class="formControls"><input class="submitBtnOk" type="submit" name="submit" value="[% c.loc('Add') %]" alt="Add"></div>
+    </th>
+    </form>
+    </tr>
+[%     bgflag = 1 -%]
+[%     bgcolor = [ ' bgcolor=#ffffff', '' ] -%]
+[%     FOREACH list IN rs_list.all -%]
+    <tr><td[% bgcolor.$bgflag %]>
+        <a class=movie href="[% c.uri_for('/', lang, 'movies', 'actor', list.actor) %]">[% list.actor %]</a>
+    </td><td[% bgcolor.$bgflag %]>[% list.role %]
+    </td><td[% bgcolor.$bgflag %]>
+        [<a class=movie href="[% c.uri_for('/', lang, 'movies', no, 'edit', 'cast_del', {desc_lang => list.desc_lang, actor => list.actor, role => list.role}) %]">[% c.loc("Delete") %]</a>]
+    </td></tr>
+[%       SET bgflag = (bgflag) ? 0 : 1 -%]
+[%     END -%]
+    </table>
+[%   ELSE -%]
+<table class=movie border=0 width=95% cellpadding=3 cellspacing=0>
+[%     bgflag = 0 -%]
+[%     bgcolor = [ ' bgcolor=#ffffff', '' ] -%]
+[%     FOREACH list IN desc_langs -%]
+[%       IF list.id != ' ' -%]
+    <tr><td[% bgcolor.$bgflag %]>
+        <a class=movie href="[% list.id %]">[% list.name %]</a>
+    </td></tr>
+[%         SET bgflag = (bgflag) ? 0 : 1 -%]
+[%       END -%]
+[%     END -%]
+</table>
+[%   END -%]
+[% END -%]
+[% IF emenu.genre.current -%]
+<!-- #####  GENRE  ######################################### -->
+    <div class="portlet">
+[% label_edit('no', c.loc('No'), 12, 'Number', no, 'readonly') %]
+    </div>
+    <table class=movie border=0 width=95% cellpadding=3 cellspacing=0>
+    <tr>
+    <form action="[% c.uri_for('/', lang, 'movies', no, 'edit', 'genre_add') %]" method="post" name="genre">
+    <input type=hidden name=no value=[% no %]>
+    <th align=left valign=bottom>
+	<div class="portlet">
+[% label_select('genreid', c.loc('Genres'), c.genres) %]
+	</div>
+    </th><th align=left>
+	<div class="formControls"><input class="submitBtnOk" type="submit" name="submit" value="[% c.loc('Add') %]" alt="Add"></div>
+    </th>
+    </form>
+    </tr>
+[%   bgflag = 0 -%]
+[%   bgcolor = [ ' bgcolor=#ffffff', '' ] -%]
+[%   genre_list = c.genres -%]
+[%   FOREACH list IN rs_list.all -%]
+    <tr><td[% bgcolor.$bgflag %]>
+        <a class=movie href="[% c.uri_for('/', lang, 'movies', 'ctg', list.genreid) %]">[% c.find_by_id(genre_list, list.genreid) %]</a>
+    </td><td[% bgcolor.$bgflag %]>
+        [<a class=movie href="[% c.uri_for('/', lang, 'movies', no, 'edit', 'genre_del', { genreid => list.genreid}) %]">[% c.loc("Delete") %]</a>]
+    </td></tr>
+[%     SET bgflag = (bgflag) ? 0 : 1 -%]
+[%   END -%]
+    </table>
+[% END -%]
+[% IF emenu.path.current -%]
+<!-- #####  PATH  ########################################## -->
+[%   SET meta = meta _ '<link rel="stylesheet" href="' _ c.uri_for_static('css/progress.css') _ '" type="text/css">' -%]
+[%   SET meta = meta _ '<script src="' _ c.uri_for_static('js/progress.js') _ '" type="text/javascript"></script>' -%]
+[%   SET meta = meta _ '<script src="' _ c.uri_for_static('js/progress.jmpl.js') _ '" type="text/javascript"></script>' -%]
+[%   storage = [] -%]
+[%   FOREACH item IN c.config.storages -%]
+[%     storage.push({ id => item.key, name => item.key }) -%]
+[%   END -%]
+[%   list_last = rs_list.count -%]
+    <form action="[% c.uri_for('/', lang, 'movies', no, 'edit', 'path_add') %]" method="post" name="path" enctype="multipart/form-data"
+	onsubmit="return (document.path.upload.checked) ? startEmbeddedProgressBar(this) : 0 ;">
+    <div class="portlet">
+[% label_edit('no', c.loc('No'), 12, 'Number', no, 'readonly') %]
+[% label_edit('range', c.loc('Range'), 12, 'Range', list_last + 1, 'readonly') %]
+[% label_edit('note', c.loc('Note'), 25, 'Note', '', '> <i>' _ c.loc('not required') _ '</i') %]
+[% label_select('storage', c.loc('Storage'), storage, c.req.params.storage) %]
+    </div>
+
+    <table class=movie border=0 width=100% cellpadding=3 cellspacing=0>
+    <tr><td width=50% valign=top>
+	<fieldset>
+	<legend><input type="radio" name="set" value="manual" id="manual"[% ' checked' IF c.req.params.set == 'manual' %]><label for="manual">[% c.loc('Manual') %]</label></legend>
+	<div class="portlet">
+[% label_edit('file_name', c.loc('Filename'), 20, 'Filename') %]
+[% label_edit('file_size', c.loc('Size'), 12, 'Size') %]
+[% label_edit('file_len', c.loc('Runtime'), 12, 'Runtime', c.sec2time(0)) %]
+	</div>
+	</fieldset>
+    </td><td width=50% valign=top>
+	<fieldset>
+	<legend><input type="radio" name="set" value="upload" id="upload"[% ' checked' IF c.req.params.set == 'upload' %]><label for="upload">[% c.loc('Upload') %]</label></legend>
+	<div class="portlet">
+[% label_file('file', c.loc('Upload'), 20, 'Video') %]
+	</div>
+	<input type="checkbox" name="autoload" value="yes" id="autoload"[% ' checked' IF c.req.params.autoload %]><label for="autoload">[% c.loc('Load from file') %]</label><br>
+	</fieldset>
+    </td></tr>
+    </table>
+    <div class="formControls"><input class="submitBtnOk" type="submit" name="submit" value="[% c.loc('Add') %]" alt="Add"></div>
+    </form>
+    <div id="progress"></div>
+<hr>
+    <table class=movie border=0 width=100% cellpadding=3 cellspacing=0>
+[%   bgflag = 0 -%]
+[%   bgcolor = [ ' bgcolor=#ffffff', '' ] -%]
+[%   FOREACH list IN rs_list.all -%]
+    <tr><td[% bgcolor.$bgflag %]>
+        <b>[% list.range %] / [% list.storage %] / [% list.file_name %]</b> ([% c.fsize(list.file_size) %])
+        [% IF list.range == list_last %]
+          [<a class=movie href="[% c.uri_for('/', lang, 'movies', no, 'edit', 'path_del', { range => list.range, all => 1 }) %]" title="[% c.loc("Delete from DB and file from storage") %]">[% c.loc("Delete") %]</a>]
+          [<a class=movie href="[% c.uri_for('/', lang, 'movies', no, 'edit', 'path_del', { range => list.range }) %]" title="[% c.loc("Delete only from DB") %]">[% c.loc("Delete from DB") %]</a>]
+        [% END %]<br>
+        [% IF list.note %]&nbsp;&nbsp;&nbsp;&nbsp;[% c.loc('Note:') %] [% list.note %]<br>[% END %]
+        &nbsp;&nbsp;&nbsp;&nbsp;[% c.loc('Runtime:') %] [% c.sec2time(list.file_len) %]<br>
+        [% IF list.audio %]&nbsp;&nbsp;&nbsp;&nbsp;[% c.loc('Audio:') %] [% list.audio %]<br>[% END %]
+        [% IF list.video %]&nbsp;&nbsp;&nbsp;&nbsp;[% c.loc('Video:') %] [% list.video %]<br>[% END %]
+        &nbsp;&nbsp;&nbsp;&nbsp;[% c.loc('Downloads: [_1]', list.counter) %]
+    </td></tr>
+[%     SET bgflag = (bgflag) ? 0 : 1 -%]
+[%   END -%]
+    </table>
+[% END -%]
+<br>
+</td></tr>
+</table>
+
+</div>

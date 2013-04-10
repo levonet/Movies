@@ -1,0 +1,9 @@
+<div class=main>
+
+  <div class="message_box">
+    [% c.loc("Welcome [_1], your email is validated.", user.name) %]<br>
+    <br>
+    [% c.loc("Please log in.") %]
+  </div>
+
+</div>

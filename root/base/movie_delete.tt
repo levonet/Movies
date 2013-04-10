@@ -1,0 +1,94 @@
+[% SET meta = meta _ '<link rel="stylesheet" href="' _ c.uri_for_static('css/widgets.css') _ '" type="text/css">' -%]
+<div class=main>
+
+<script language="Javascript">
+<!--
+function checkAll(oForm, cbName, checked) {
+    if (oForm[cbName].length) {
+	for (var i=0; i < oForm[cbName].length; i++)
+	    oForm[cbName][i].checked = checked;
+    } else {
+	oForm[cbName].checked = checked;
+    }
+}
+-->
+</script>
+
+[% PROCESS top_bar.tt %]
+[% PROCESS widgets.tt %]
+<br>
+
+<!-- сначала находим - показываем, подтверждаем и удаляем -->
+[% menu_boxhead(dmenu, dmenu_range, 'delete', lang, no) %]
+
+<table class=box border=0 cellpadding=5 cellspacing=0 width=100%>
+<tr><td>
+[% IF c.req.params.status -%]
+  <div class="message_box">
+    [% c.loc('Status: [_1]', c.req.params.status) %]
+  </div>
+[% END -%]
+[% IF NOT c.req.params.confirm -%]
+  <form action="[% c.uri_for('/', lang, 'movies', no, 'delete', {confirm => 1}) %]" method="post" name="delete">
+[% END %]
+  <div class="portlet">
+[% label_edit('no', c.loc('No'), 12, 'Number', no, 'readonly') %]
+  </div>
+
+<b>Delete movie: [% row_general.orig_title %] ([% row_general.ryear %])</b>
+<br>
+<br>
+<table class=boxhead border=0 cellpadding=2 cellspacing=0>
+<tr><th colspan=3>[% c.loc('Delete movie files') %]</th></tr>
+
+<tr>
+[% IF posters.size -%]
+<td rowspan=[% posters.size %]>[% c.loc('Poster') %]</td>
+[%   FOREACH file IN posters -%]
+<td>[% IF NOT c.req.params.confirm %]<input type="checkbox" name="delete_file" value="[% file.file %]" id="[% file.name %]" checked>[% END %]<label for="[% file.name %]">[% file.name %]</label></td>
+<td>[% c.fsize(file.status) %]</td></tr><tr>
+[%   END -%]
+[% END -%]
+[% IF files.size -%]
+<td rowspan=[% files.size %] valign=top>[% c.loc('From Storage') %]</td>
+[%   FOREACH file IN files -%]
+<td>[% IF NOT c.req.params.confirm %]<input type="checkbox" name="delete_file" value="[% file.file %]" id="[% file.name %]" checked>[% END %]<label for="[% file.name %]">[% file.storage _ ': ' _ file.name %]</label></td>
+<td>[% c.fsize(file.status) %]</td></tr><tr>
+[%   END -%]
+[% END -%]
+[%# IF sdirs.size -%]
+<td rowspan=[% sdirs.size %] valign=top>[% c.loc('Directories') %]</td>
+[%   FOREACH file IN sdirs -%]
+<td>[% IF NOT c.req.params.confirm %]<input type="checkbox" name="delete_dirs" value="[% file.dir %]" id="[% file.name %]" checked>[% END %]<label for="[% file.name %]">[% file.name %]</label></td>
+<td>[% file.status %]</td></tr><tr>
+[%   END -%]
+[%# END -%]
+<td>&nbsp;</td><td>[% IF NOT c.req.params.confirm %]<input type="checkbox" name="total" value="all" id="total" checked
+    onclick="{ checkAll(this.form,'delete_file',this.checked);
+	       checkAll(this.form,'delete_dirs',this.checked); }">[% END %]<label for="total">[% c.loc('Select all') %]</label></td><td>&nbsp;</td></tr>
+</table>
+
+<br>
+<table class=boxhead border=0 cellpadding=2 cellspacing=0>
+<tr><th colspan=3>[% c.loc('Delete movie from DB') %]</th></tr>
+<tr><td>View</td><td>[% c.loc('[_1] rows', rc_view) %]</td><td>[% IF c.req.params.confirm; c.loc('deleted [_1]', rv_view); ELSE; '&nbsp;'; END %]</td></tr>
+<tr><td>Path</td><td>[% c.loc('[_1] rows', rc_path) %]</td><td>[% IF c.req.params.confirm; c.loc('deleted [_1]', rv_path); ELSE; '&nbsp;'; END %]</td></tr>
+<tr><td>Genre</td><td>[% c.loc('[_1] rows', rc_genre) %]</td><td>[% IF c.req.params.confirm; c.loc('deleted [_1]', rv_genre); ELSE; '&nbsp;'; END %]</td></tr>
+<tr><td>Cast</td><td>[% c.loc('[_1] rows', rc_cast) %]</td><td>[% IF c.req.params.confirm; c.loc('deleted [_1]', rv_cast); ELSE; '&nbsp;'; END %]</td></tr>
+<tr><td>Description</td><td>[% c.loc('[_1] rows', rc_desc) %]</td><td>[% IF c.req.params.confirm; c.loc('deleted [_1]', rv_desc); ELSE; '&nbsp;'; END %]</td></tr>
+<tr><td>General</td><td>[% c.loc('[_1] rows', rc_general) %]</td><td>[% IF c.req.params.confirm; c.loc('deleted [_1]', rv_general); ELSE; '&nbsp;'; END %]</td></tr>
+</table>
+
+[% IF NOT c.req.params.confirm -%]
+    <div class="portlet">
+	<div class="formControls">
+	    <input class="submitBtnDel" type="submit" name="submit" value="[% c.loc('Delete') %]" alt="Delete">
+	</div>
+    </div>
+  </form>
+[% END -%]
+<br>
+</td></tr>
+</table>
+
+</div>
